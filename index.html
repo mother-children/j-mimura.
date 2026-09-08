@@ -27,21 +27,7 @@
 	
 <!-- ↓ ここから追加（パスワード保護＆noindex） -->
 <meta name="robots" content="noindex,nofollow">
-<script>
-  // クライアント様に伝えるパスワードを設定（例: mc12345678）
-  const PASSWORD = "mc12345678";
-
-  // ポップアップダイアログを表示
-  const userInput = prompt("関係者専用ページです。パスワードを入力してください:");
-
-  // パスワードが合致しない場合
-  if (userInput !== PASSWORD) {
-    alert("パスワードが正しくありません。");
-    // 画面を書き換えて読み込みを強制停止
-    document.write("<div style='text-align:center;padding:50px;font-size:20px;font-family:sans-serif;'>アクセス権限がありません。</div>");
-    window.stop();
-  }
-</script>
+<script src="auth.js"></script>
 <!-- ↑ ここまで追加 -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
