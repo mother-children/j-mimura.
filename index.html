@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <!--
   三村時計店様 時計修理相談室 LP デザイン
+  v32 2026/9/8  メニュー項目のSP時の文字サイズを15pxに
+  v31 2026/9/8  メニュー項目をSPでも2カラムに。文字サイズを2px縮小
+  v30 2026/9/8  メニュー内の店舗カードをSPでも2カラム縦組みに
   v29 2026/9/8  FVバッジの丸印を削除。フッターのリンクサイズを12pxに
   v28 2026/9/8  フッターのリンクサイズを14pxに（§2-1 例外・機能的リンク）
   v27 2026/9/8  特典バッジの太さを500に調整
@@ -217,7 +220,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:.06em}
 .drawer .dcta{margin-top:26px}
 .dnav{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(20px,3vw,44px);border-top:1px solid var(--line-w)}
 .dnav li{border-bottom:1px solid var(--line-w)}
-.dnav a{text-decoration:none;display:flex;align-items:center;gap:14px;padding:16px 4px;font-family:var(--serif);font-size:19px;letter-spacing:.1em;transition:.3s}
+.dnav a{text-decoration:none;display:flex;align-items:center;gap:14px;padding:16px 4px;font-family:var(--serif);font-size:17px;letter-spacing:.1em;transition:.3s}
 .dnav a::before{content:"";width:5px;height:5px;background:var(--gold);flex:none;opacity:.75;transition:.3s}
 .dnav a:hover{padding-left:14px;color:var(--gold-2)}
 /* メニュー内の店舗案内 */
@@ -623,11 +626,13 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:.06em}
   .drawer{padding:88px 22px 40px}
   .drawer .logo{margin-bottom:24px}
   .drawer .logo .mk{width:100px}
-  .dnav{grid-template-columns:1fr}
-  .dnav a{padding:14px 4px;font-size:17px}
-  .dstores{grid-template-columns:1fr;gap:18px}
-  .dstore{display:grid;grid-template-columns:112px 1fr;gap:14px;align-items:center}
-  .dstore .sn2{margin-top:0}
+  /* SPもPC同様に2カラム。幅が半分になるぶん文字を少し小さくする */
+  .dnav{grid-template-columns:1fr 1fr;gap:0 16px}
+  .dnav a{padding:14px 2px;font-size:15px;gap:9px;letter-spacing:.06em}
+  /* SPも写真の下にテキストを置く縦組みのまま、2カラムで並べる */
+  .dstores{grid-template-columns:1fr 1fr;gap:16px 12px}
+  .dstore .sn2{margin-top:10px;font-size:var(--fs-label)}
+  .dstore .st2{font-size:16px}
   .fv-in{padding:130px var(--pad) 90px}
   .fv h1{font-size:clamp(26px,7.4vw,36px);white-space:normal}
   .fv-trust{margin-top:-46px}
