@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<!--
+  三村時計店様 時計修理相談室 LP デザイン
+  v29 2026/9/8  FVバッジの丸印を削除。フッターのリンクサイズを12pxに
+  v28 2026/9/8  フッターのリンクサイズを14pxに（§2-1 例外・機能的リンク）
+  v27 2026/9/8  特典バッジの太さを500に調整
+  v26 2026/9/8  フッターのリンクをグローバルナビと同じ明朝体に変更
+  v25 2026/9/8  FVのボタンを電話番号の右に戻す。マーキーの英字表記を復帰（§1-2 #6 承認待ち）。
+                比較表の見出しを短縮。.h2 .thin をゴールドに。特典の見出しを1行に収め、限定バッジを拡大
+  v24 2026/9/7  統合ルール v1.5 を適用。英字ラベル（eyebrow）を全廃、
+                本文サイズを16px/14pxへ、本文の max-width を撤去、
+                text-align:justify を適用、セクション余白を clamp() に統一、
+                等間隔ディレイをセクション単位に変更
+  v23 2026/9/4  支給写真（本番）を10箇所に反映
+  v22 2026/9/4  写真をストック素材に差し替え
+  TODO: 電話番号・修理料金・限定特典・ドメインが未確定（※要確認）
+  TODO: 天満屋福山店／フジグラン神辺店の店舗写真が未撮影
+  TODO: 地図埋め込みがプレースホルダのまま
+  TODO: FV・実績帯・悩み・特典の写真はストック素材（購入前）
+-->
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>時計修理相談室｜三村時計店（創業110年・福山）</title>
+<meta name="description" content="他店・通販で購入した時計も歓迎。1級時計修理技能士との提携で正規店品質の修理を適正価格で。ゆめタウン福山店内・予約不要・無料お見積り。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marcellus&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   三村時計店 時計修理相談室 LP ／ デザインカンプ
+   統合ルール mac_web_production_rules_v1.md（v1.5）適用版
+   ========================================================= */
+:root{
+  --black:#121212;       /* 基調の黒 */
+  --black-2:#1b1b1b;     /* カード・段差 */
+  --black-3:#0b0b0b;     /* フッター・最深部 */
+  --navy:#182130;        /* 差し色の紺（比較表・帯） */
+  --ink:#f0ede6;         /* 明部テキスト */
+  --ink-2:rgba(240,237,230,.72);
+  --mute:rgba(240,237,230,.45);
+  --ivory:#f4f1ea;       /* 息抜きの明部セクション（理由・流れ）のみ */
+  --paper:#121212;
+  --line:rgba(255,255,255,.12);
+  --line-w:rgba(255,255,255,.14);
+  --gold:#b29a68;        /* シャンパンゴールド（アクセント） */
+  --gold-2:#d3bf8e;
+  --serif:"Shippori Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  --en:"Cormorant Garamond","Times New Roman",serif;
+  --num:"Marcellus","Shippori Mincho","Times New Roman",serif;  /* 数字専用（ライニング数字） */
+  --sans:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --w:1180px;                                   /* コンテンツ最大幅＝行長を決める「箱」（§3） */
+  --pad:clamp(20px,5vw,72px);
+  /* 文字サイズ（§2-1：PC16px／SP14pxを下回らせない） */
+  --fs-body:clamp(14px,1.1vw,16px);
+  --fs-lead:clamp(15px,1.4vw,18px);
+  /* §2-1 例外：ラベル・注記・キャプション。拡大すると枠内に収まらなくなる記号的要素 */
+  --fs-label:14px;
+  --space-section:clamp(72px,9vw,120px);        /* セクション間余白（§3） */
+  /* ステップの段階色（生の色値を直書きしない・§7-3） */
+  --step-1:#4d576b;
+  --step-2:#2f394c;
+  --step-3:#161d2a;
+  --header-bg:#0d0d0d;
+  --ph-bg:#0e1116;
+  --line-green:#06c755;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+section[id],div[id]{scroll-margin-top:104px}
+body{font-family:var(--sans);font-weight:400;color:var(--ink);background:var(--paper);line-height:1.9;letter-spacing:.04em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:.06em}
+.en{font-family:var(--en);letter-spacing:.14em;text-transform:uppercase}
+/* 数字はすべてライニング数字で統一 */
+.num-big,.fv-trust .n,.prow .pv,.stats .sn,.step .sn,.tel-big .n,.drawer .dtel .n,.scard .stel,.worry-list li::before,.ccard .date,.gnav .tel,.rb .num-big{font-family:var(--num);font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1,"tnum" 0}
+/* 本文の共通ベース ─ 統合ルール §2-1 / §2-2 / §2-3
+   max-width は書かない。行長は親コンテナ（--w）で決める */
+.lead,.fv .sub,.rb p,.step p,.worry-list .d,.fa .a p,.vcard .vt-txt,
+.ccard p,.cbox p,.offer p,.dsub,.tech p,.scard dd,.dstore .sn2{
+  font-size:var(--fs-body);
+  text-align:justify;
+  line-break:strict;
+  word-break:normal;
+  text-wrap:pretty;
+}
+.lead{font-size:var(--fs-lead)}
+.wrap{max-width:var(--w);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.vt{writing-mode:vertical-rl}
+
+/* ---------- 写真プレースホルダ ---------- */
+.ph{position:relative;overflow:hidden;
+  background:linear-gradient(150deg,#2a2f38 0%,#191d24 45%,#0e1116 100%);
+  color:rgba(255,255,255,.6);display:flex;align-items:flex-end;padding:16px;
+  font-size:11px;letter-spacing:.12em;line-height:1.6}  /* §2-1 例外：同上 */
+/* 質感（斜め極細ライン）※実写差し替え時は削除 */
+.ph::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 1px,transparent 1px 14px)}
+.ph.light{background:linear-gradient(150deg,#e8e3d8 0%,#d3ccbd 55%,#bdb5a4 100%);color:rgba(20,27,39,.6)}
+.ph>span{position:relative;z-index:2;display:inline-block;padding:8px 12px;background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.14)}
+.ph.light>span{background:rgba(255,255,255,.6);border-color:rgba(20,27,39,.14);color:rgba(20,27,39,.7)}
+/* §2-1 例外：写真プレースホルダの識別ラベル。実写差し替え時に消える要素 */
+.ph small{display:block;font-family:var(--en);letter-spacing:.2em;font-size:10px;opacity:.75;margin-bottom:3px}
+/* 画像リビール（カーテンが1回だけ引かれる） */
+.ph::after{content:"";position:absolute;inset:-1px;z-index:5;background:var(--curtain,#0b0b0b);
+  transform:scaleX(1);transform-origin:right center;transition:transform 1.05s cubic-bezier(.76,0,.24,1)}
+.ph.in::after{transform:scaleX(0)}
+.ph.rv-up::after{transform:scaleY(1);transform-origin:bottom center}
+.ph.rv-up.in::after{transform:scaleY(0)}
+.ph.rv-left::after{transform-origin:left center}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+  transform:scale(1.12);transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}
+.ph.in img{transform:none}
+/* 実写を入れた枠：質感オーバーレイとキャプションは不要 */
+.ph.has-img::before{display:none}
+.ph.has-img>span{display:none}
+.ph.has-img{background:#0e1116}
+.ph:not(.has-img){border:1px solid rgba(255,255,255,.14)}
+/* 暗い面に載せる写真は少しだけ沈める（黒基調に馴染ませる） */
+.ph.dim img{filter:brightness(.86) saturate(.92) contrast(1.04)}
+.ph.dim::before{display:block;content:"";background:linear-gradient(180deg,rgba(10,10,10,.12),rgba(10,10,10,.42));z-index:2}
+.ivory{--curtain:#f4f1ea}
+.price,.column,.fv-trust,.vcard,.cbox,.linebox{--curtain:#1b1b1b}
+.voice,.foot,.fv{--curtain:#0b0b0b}
+@media (prefers-reduced-motion:reduce){.ph::after{display:none}.ph img{transform:none}}
+
+/* ---------- 共通ラベル ---------- */
+/* 見出し上のライン。英字ラベル（Concept/Service 等）は §1-2 #1 により廃止し、
+   区切りのラインだけを残している */
+.eyebrow{display:flex;align-items:center;height:1px}
+.eyebrow::before{content:"";display:block;width:56px;height:1px;background:var(--gold)}
+.h2{font-size:clamp(26px,3.2vw,40px);line-height:1.5;margin-top:26px}
+.h2 .thin{font-weight:400;color:var(--gold-2)}
+.lead{margin-top:20px;color:var(--ink-2)}
+.dark .h2{color:#fff}.dark .h2 .thin{color:var(--gold-2)}
+.dark .lead{color:rgba(255,255,255,.72)}
+.dark{background:var(--navy);color:#fff}
+.ivory{background:var(--ivory);--ink:#1c1c1c;--ink-2:#4a4a4a;--mute:#8a8a86;--line:rgba(20,27,39,.12);--paper:#fbfaf7;--black-2:#fff;color:#1c1c1c}
+.ivory .fv-trust .n{color:#141b27}
+.ivory .h2 .thin{color:var(--gold)}
+.num-big{font-family:var(--num);font-size:clamp(72px,9vw,120px);line-height:1;color:var(--gold);font-weight:400;letter-spacing:0}
+
+/* ---------- ボタン ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;text-decoration:none;font-weight:500;letter-spacing:.12em;transition:.3s;border:1px solid transparent}
+.btn-gold{background:var(--gold);color:#fff;padding:18px 34px;font-size:var(--fs-body);font-weight:500}
+.btn-gold:hover{background:var(--gold-2);color:var(--navy)}
+.btn-line{background:transparent;border-color:currentColor;padding:17px 34px;font-size:var(--fs-body)}
+.btn-line:hover{background:#f0ede6;color:#121212;border-color:#f0ede6}
+.ivory .btn-line:hover{background:#141b27;color:#fff;border-color:#141b27}
+.dark .btn-line:hover{background:#fff;color:var(--navy);border-color:#fff}
+.btn .ar{font-family:var(--en);font-size:16px;transition:transform .3s}
+.btn:hover .ar{transform:translateX(5px)}
+.tel-big{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.tel-big small{font-size:var(--fs-label);letter-spacing:.12em;color:var(--gold)}
+.tel-big .n{font-family:var(--num);font-size:clamp(32px,4vw,44px);letter-spacing:.06em;line-height:1.1;font-weight:500}
+.tel-big .h{font-size:var(--fs-label);color:var(--mute);letter-spacing:.1em}
+.dark .tel-big .h{color:rgba(255,255,255,.6)}
+
+/* =========================================================
+   ヘッダー（PC：固定・両サイド／SP：ハンバーガー）
+   ========================================================= */
+#navToggle{display:none}
+.hd{position:fixed;top:0;left:0;right:0;z-index:110;display:flex;justify-content:space-between;align-items:center;gap:24px;
+  padding:16px var(--pad);transition:background .4s,padding .4s,border-color .4s;border-bottom:1px solid transparent}
+.hd.scrolled{background:var(--header-bg);padding:12px var(--pad);border-bottom-color:rgba(255,255,255,.12)}
+/* メニューを開いている間は、ヘッダーの帯とロゴ・ナビを退けて閉じるボタンだけを残す */
+.hd .logo,.hd .gnav{transition:opacity .3s,visibility .3s}
+#navToggle:checked ~ .hd{background:transparent;backdrop-filter:none;border-bottom-color:transparent}
+#navToggle:checked ~ .hd .logo,#navToggle:checked ~ .hd .gnav{opacity:0;visibility:hidden;pointer-events:none}
+.logo{display:flex;align-items:center;gap:16px;text-decoration:none;color:#fff}
+.logo .mk{width:118px;flex:none;filter:invert(1) brightness(1.6)}
+.logo .mk img{width:100%;height:auto}
+.logo .div{width:1px;height:30px;background:rgba(255,255,255,.28)}
+.logo .t1{font-family:var(--serif);font-size:var(--fs-body);letter-spacing:.14em;line-height:1.3;display:block}
+/* 2026/9/7 英字表記を使用。ロゴ内に印字されているブランド表記と同一のため
+   （統合ルール §1-3 例外条件1）。§2-1 例外：ロゴ脇の識別表記 */
+.logo .t2{font-size:10px;letter-spacing:.16em;opacity:.7;font-family:var(--en)}
+.gnav{display:flex;align-items:center;gap:clamp(16px,2vw,32px);margin-left:auto}
+.gnav a{text-decoration:none;font-family:var(--serif);font-size:17px;font-weight:500;letter-spacing:.1em;color:#fff;opacity:.9;position:relative;padding:6px 0;white-space:nowrap}
+.gnav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:.3s}
+.gnav a:hover{opacity:1}
+.gnav a:hover::after{width:100%}
+.gnav .tel{font-size:24px;letter-spacing:.04em;opacity:1;padding-left:clamp(12px,1.8vw,26px);border-left:1px solid rgba(255,255,255,.22)}
+.gnav .tel small{display:block;font-size:var(--fs-label);letter-spacing:.14em;color:var(--gold-2);font-family:var(--sans);margin-bottom:1px}
+.gnav .hcta{background:var(--gold);color:#fff;padding:14px 24px;font-size:16px;font-weight:600;letter-spacing:.1em;opacity:1}
+.gnav .hcta::after{display:none}
+.gnav .hcta:hover{background:var(--gold-2);color:#121212}
+.hamb{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;padding:6px 2px;
+  color:#fff}
+.hamb .bars{position:relative;width:44px;height:12px}
+.hamb .bars i{position:absolute;left:0;width:100%;height:1px;background:currentColor;transition:.4s cubic-bezier(.7,0,.3,1)}
+.hamb .bars i:nth-child(1){top:0}
+.hamb .bars i:nth-child(2){bottom:0}
+/* 2026/9/7 MENU/CLOSE の英字を使用。開閉状態を示す機能ラベルのため
+   （統合ルール §1-5）。§2-1 例外：アイコンに添える記号的ラベル */
+.hamb .lb{font-family:var(--en);font-size:11px;letter-spacing:.16em;line-height:1}
+.hamb .lb::after{content:"MENU"}
+#navToggle:checked ~ .hd .hamb .bars i:nth-child(1){top:5.5px;transform:rotate(13deg)}
+#navToggle:checked ~ .hd .hamb .bars i:nth-child(2){bottom:5.5px;transform:rotate(-13deg)}
+#navToggle:checked ~ .hd .hamb .lb::after{content:"CLOSE"}
+/* 全画面メニュー */
+.drawer{position:fixed;inset:0;z-index:100;background:var(--black-3);color:#fff;
+  opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s;
+  display:block;overflow-y:auto;padding:120px var(--pad) 70px}
+#navToggle:checked ~ .drawer{opacity:1;visibility:visible}
+.dwrap{max-width:var(--w);width:100%;margin:0 auto;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(30px,5vw,70px);align-items:start}
+.drawer .logo{margin-bottom:34px}
+.drawer .logo .t1{display:block;font-size:18px}
+.drawer .logo .t2{display:block}
+.drawer .logo .div{display:block}
+.dcopy{font-family:var(--serif);font-size:clamp(20px,2.4vw,28px);line-height:1.8;letter-spacing:.08em}
+.dsub{color:rgba(255,255,255,.6);margin-top:16px;line-height:2}
+.drawer .dtel{display:block;text-decoration:none;margin-top:32px}
+.drawer .dtel .n{font-family:var(--num);font-size:clamp(30px,3.4vw,40px);letter-spacing:.04em;color:#fff;line-height:1.2}
+.drawer .dtel small{display:block;font-size:var(--fs-label);letter-spacing:.14em;color:var(--gold-2);font-family:var(--sans)}
+.drawer .dcta{margin-top:26px}
+.dnav{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(20px,3vw,44px);border-top:1px solid var(--line-w)}
+.dnav li{border-bottom:1px solid var(--line-w)}
+.dnav a{text-decoration:none;display:flex;align-items:center;gap:14px;padding:16px 4px;font-family:var(--serif);font-size:19px;letter-spacing:.1em;transition:.3s}
+.dnav a::before{content:"";width:5px;height:5px;background:var(--gold);flex:none;opacity:.75;transition:.3s}
+.dnav a:hover{padding-left:14px;color:var(--gold-2)}
+/* メニュー内の店舗案内 */
+.dstore-head{display:flex;align-items:center;gap:14px;margin:40px 0 20px;font-family:var(--serif);font-size:17px;letter-spacing:.14em}
+.dstore-head::after{content:"";flex:1;height:1px;background:var(--line-w)}
+.dstores{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,22px)}
+.dstore{text-decoration:none;color:inherit;display:block}
+.dstore .ph{aspect-ratio:4/3}
+.dstore .ph::after{display:none}
+.dstore .sn2{font-family:var(--serif);letter-spacing:.06em;margin-top:12px;line-height:1.6;text-align:left}
+.dstore .sn2 b{display:block;font-weight:500;color:var(--gold-2);font-size:var(--fs-label);letter-spacing:.1em;margin-bottom:3px}
+.dstore .st2{font-family:var(--num);font-size:18px;letter-spacing:.02em;margin-top:6px;color:#fff}
+.dstore .sh2{font-size:var(--fs-label);color:var(--mute);margin-top:2px}
+
+/* FV右端のスクロール指示（縦向き） */
+.scroll-ind{position:absolute;right:clamp(18px,2.2vw,34px);bottom:120px;z-index:4;
+  display:flex;flex-direction:column;align-items:center;gap:16px;color:rgba(255,255,255,.62)}
+/* 「SCROLL」の英字表記は §1-2 #10 により削除し、動く縦線のみで示す */
+.scroll-ind i{display:block;width:1px;height:96px;background:rgba(255,255,255,.35);position:relative;overflow:hidden}
+.scroll-ind i::after{content:"";position:absolute;inset:0;background:var(--gold);transform:translateY(-100%);animation:sc 2.6s ease-in-out infinite}
+@keyframes sc{0%{transform:translateY(-100%)}60%{transform:translateY(100%)}100%{transform:translateY(100%)}}
+
+/* =========================================================
+   FV
+   ========================================================= */
+.fv{position:relative;min-height:100svh;display:grid;grid-template-columns:1fr;background:var(--black-3);color:#fff;overflow:hidden}
+.fv-bg{position:absolute;inset:0}
+.fv-bg .ph{position:absolute;inset:0;padding:0;align-items:flex-start;justify-content:flex-end}
+.fv-bg .ph span{margin:96px var(--pad) 0 0;text-align:right}
+.fv-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,11,.94) 0%,rgba(11,11,11,.72) 45%,rgba(11,11,11,.15) 100%),linear-gradient(0deg,rgba(18,18,18,1) 0%,transparent 42%)}
+.fv-in{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr);gap:40px;align-items:end;max-width:var(--w);margin:0 auto;width:100%;padding:170px var(--pad) 140px}
+.fv-badge{display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.35);padding:9px 18px;font-size:var(--fs-label);letter-spacing:.12em}
+.fv h1{margin-top:34px;font-size:clamp(30px,4.4vw,58px);line-height:1.5;letter-spacing:.06em;font-weight:500;white-space:nowrap}
+.fv h1 em{font-style:normal;color:var(--gold-2);position:relative}
+.fv h1 em::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:1px;background:var(--gold)}
+/* 行長は .fv-copy（箱）で決める。テキスト側に max-width を書かない（§2-3） */
+.fv .sub{margin-top:28px;font-size:var(--fs-lead);line-height:2.1;color:rgba(255,255,255,.82)}
+/* 行長を決める箱。電話番号＋ボタンが1行に収まる幅を確保する（§3） */
+.fv-copy{max-width:min(100%,760px)}
+.fv-cta{margin-top:42px;display:flex;flex-wrap:wrap;gap:16px 30px;align-items:center}
+.fv-note{margin-top:16px;font-size:var(--fs-label);color:rgba(255,255,255,.6);letter-spacing:.08em}
+/* 意図的な重なり：FVの下端に信頼指標を食い込ませる（§3） */
+.fv-trust{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);max-width:var(--w);margin:-70px auto 0;width:calc(100% - var(--pad)*2);background:var(--black-2);color:var(--ink);border:1px solid var(--line)}
+.fv-trust>div{padding:26px 20px;text-align:center;border-right:1px solid var(--line)}
+.fv-trust>div:last-child{border-right:none}
+.fv-trust .n{font-family:var(--num);font-size:38px;line-height:1;color:#fff}
+.fv-trust .n b{font-family:var(--serif);font-size:16px;font-weight:500;margin-left:2px}
+.fv-trust .c{font-size:var(--fs-label);letter-spacing:.12em;color:var(--mute);margin-top:8px}
+
+/* マーキー帯 */
+.marq{overflow:hidden;background:var(--paper);padding:56px 0 0}
+.marq .track{display:flex;gap:80px;width:max-content;animation:marq 38s linear infinite}
+.marq span{font-family:var(--serif);font-size:clamp(20px,2.6vw,30px);letter-spacing:.12em;color:var(--ink);white-space:nowrap;opacity:.9}
+/* 2026/9/8 ラテン書体のイタリック英字を使用（統合ルール §1-2 #6）。
+   和文コピーの対訳を添える帯として、依頼により復帰。§0-5 の承認待ち */
+.marq span .en{font-family:var(--en);font-style:italic;text-transform:none;letter-spacing:.08em;color:var(--gold);margin-left:24px}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* =========================================================
+   悩み
+   ========================================================= */
+.worry{padding:var(--space-section) 0;background:var(--paper);position:relative;z-index:2}
+.worry .grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(30px,6vw,90px);align-items:start}
+.worry .sticky{position:sticky;top:110px}
+.worry .figs{position:relative;margin:32px 0 40px;width:min(100%,460px)}
+.worry .ph{aspect-ratio:4/5}
+/* 意図的なはみ出し：縦写真の右下に小写真を重ねて単調さを避ける（§3） */
+.worry .ph.small{position:absolute;right:-52px;bottom:-52px;width:46%;aspect-ratio:1;
+  border:10px solid var(--paper);z-index:2}
+.worry-list{list-style:none;padding-top:40px}
+/* 連番は §1-2 #4 により廃止（項目に順序の意味がないため）。印だけを残す */
+.worry-list li{display:grid;grid-template-columns:28px 1fr;gap:14px;padding:30px 0;border-top:1px solid var(--line)}
+.worry-list li:last-child{border-bottom:1px solid var(--line)}
+.worry-list li::before{content:"";width:7px;height:7px;background:var(--gold);margin-top:14px}
+.worry-list .t{font-family:var(--serif);font-size:20px;letter-spacing:.06em}
+.worry-list .d{color:var(--ink-2);margin-top:8px}
+.worry-lead{margin-top:44px;font-family:var(--serif);font-size:19px;letter-spacing:.1em;color:var(--gold-2);display:flex;align-items:center;gap:16px}
+.worry-lead::after{content:"";flex:1;height:1px;background:var(--gold)}
+
+/* =========================================================
+   選ばれる理由（3ブロック・交互配置・画像はみ出し）
+   ========================================================= */
+.reason{background:var(--ivory);padding:var(--space-section) 0;position:relative;overflow:clip}
+.reason .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.rb{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center;margin-top:110px}
+.rb .ph{aspect-ratio:5/4}
+.rb .num-big{font-size:clamp(52px,5.2vw,72px);margin-bottom:-6px}
+.rb .lbl{font-size:clamp(15px,1.35vw,17px);font-family:var(--sans);font-weight:400;letter-spacing:.16em;color:var(--gold);margin-top:14px;line-height:1.6}
+.rb h3{font-size:clamp(24px,2.6vw,32px);line-height:1.6;margin-top:12px}
+.rb p{margin-top:22px;color:var(--ink-2)}
+/* 意図的なはみ出し：画像を画面左端まで抜いて、3ブロックの見え方を変える（§3） */
+.rb.r1 .img{margin-left:calc(var(--pad) * -1)}
+.rb.r1 .img .ph{width:calc(100% + 40px)}
+/* 意図的なずらし：主写真を下げ、小写真を左上に重ねる（§3） */
+.rb.r2 .img{order:2;position:relative}
+.rb.r2 .img .ph{width:88%;margin-left:auto;transform:translateY(40px)}
+.rb.r2 .img .ph2{position:absolute;left:0;top:-50px;width:42%;aspect-ratio:3/4;border:10px solid var(--ivory)}
+/* 意図的なはみ出し：横長写真を画面左端まで抜く（§3） */
+.rb.r3{grid-template-columns:1.15fr .85fr;margin-top:160px}
+.rb.r3 .img .ph{aspect-ratio:16/10;width:calc(100% + var(--pad));margin-left:calc(var(--pad) * -1)}
+.reason-cta{margin:110px auto 0;max-width:var(--w);width:calc(100% - var(--pad) * 2);background:var(--black-3);color:#fff;
+  border:1px solid var(--gold);padding:52px clamp(28px,4vw,60px);display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;position:relative}
+.reason-cta .ttl{font-family:var(--serif);font-size:22px;letter-spacing:.1em}
+.reason-cta .ttl small{display:block;font-size:var(--fs-label);color:var(--gold);letter-spacing:.12em;font-family:var(--sans);margin-bottom:8px}
+
+/* =========================================================
+   比較表
+   ========================================================= */
+.compare{padding:var(--space-section) 0}
+.compare .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);align-items:start}
+.ctable{width:100%;border-collapse:collapse;font-size:var(--fs-body)}
+.ctable th,.ctable td{padding:20px 12px;text-align:center;border-bottom:1px solid var(--line-w);vertical-align:middle}
+.ctable thead th{font-family:var(--serif);font-weight:500;font-size:var(--fs-body);letter-spacing:.1em;color:rgba(255,255,255,.7);padding-bottom:16px}
+.ctable thead th.us{color:var(--gold-2);position:relative;font-size:16px}
+.ctable thead th.us::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;background:var(--gold)}
+.ctable tbody th{text-align:left;font-weight:400;color:rgba(255,255,255,.85);letter-spacing:.08em}
+.ctable td.us{background:rgba(178,154,104,.12);color:#fff;font-family:var(--serif);font-size:16px}
+.ctable .o{font-size:22px}
+.ctable .x{color:rgba(255,255,255,.35)}
+.compare .note{font-size:var(--fs-label);color:rgba(255,255,255,.55);margin-top:16px}
+
+/* =========================================================
+   料金
+   ========================================================= */
+.price{padding:var(--space-section) 0;background:var(--black-2);position:relative}
+.price .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,6vw,90px);align-items:start}
+.plist{margin-top:40px;border-top:1px solid var(--ink)}
+.prow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:22px 4px;border-bottom:1px solid var(--line)}
+.prow .pn{font-family:var(--serif);font-size:18px;letter-spacing:.06em}
+.prow .ps{font-size:var(--fs-label);color:var(--mute);margin-left:12px;letter-spacing:.08em}
+.prow .pv{font-family:var(--num);font-size:26px;color:#fff;white-space:nowrap;letter-spacing:.02em}
+.prow .pv b{font-family:var(--serif);font-weight:400;font-size:var(--fs-label);margin-left:4px}
+.pfree{margin-top:30px;border:1px solid var(--gold);padding:20px 24px;text-align:center;font-family:var(--serif);font-size:var(--fs-lead);letter-spacing:.1em;color:var(--gold-2)}
+.price .imgs{position:relative;padding-top:40px}
+.price .imgs .ph{aspect-ratio:3/4;width:78%;margin-left:auto}
+/* 意図的なはみ出し：縦写真の左下に小写真を重ねる（§3） */
+.price .imgs .ph.light{position:absolute;left:0;bottom:-70px;width:52%;aspect-ratio:1;border:10px solid var(--black-2)}
+
+/* =========================================================
+   実績帯（全幅・写真背景）
+   ========================================================= */
+.stats{position:relative;padding:var(--space-section) 0;color:#fff;overflow:hidden}
+.stats .bg{position:absolute;inset:0}
+.stats .bg .ph{position:absolute;inset:0;align-items:flex-start;padding:24px var(--pad)}
+.stats .bg::after{content:"";position:absolute;inset:0;background:rgba(11,11,11,.8)}
+.stats .in{position:relative;z-index:1}
+.stats .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:60px;border-top:1px solid var(--line-w);border-bottom:1px solid var(--line-w)}
+.stats .grid>div{padding:40px 20px;text-align:center;border-right:1px solid var(--line-w)}
+.stats .grid>div:last-child{border-right:none}
+.stats .sn{font-family:var(--num);font-size:clamp(48px,6vw,76px);line-height:1;color:#fff}
+.stats .sn b{font-family:var(--serif);font-size:18px;font-weight:400;margin-left:4px;color:var(--gold-2)}
+.stats .sc{font-size:var(--fs-label);letter-spacing:.12em;color:rgba(255,255,255,.7);margin-top:14px}
+
+/* =========================================================
+   流れ（横3ステップ）
+   ========================================================= */
+.flow{padding:var(--space-section) 0;background:var(--ivory)}
+/* ステップは本文より広い幅を使う */
+.flow .wrap{max-width:1420px}
+.flow .head{text-align:center}
+.flow .head .eyebrow{justify-content:center}
+/* 矢印型ステップ（右へ進むほど濃くなる） */
+.steps{--tip:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:76px;position:relative}
+.step{position:relative;color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;
+  padding:56px clamp(30px,3.4vw,54px) 52px;background:var(--step-1);
+  clip-path:polygon(0 0,calc(100% - var(--tip)) 0,100% 50%,calc(100% - var(--tip)) 100%,0 100%)}
+.step.s1{padding-right:calc(clamp(30px,3.4vw,54px) + var(--tip))}
+.step.s2{background:var(--step-2);padding-right:calc(clamp(30px,3.4vw,54px) + var(--tip))}
+.step.s3{background:var(--step-3);clip-path:none}
+.step .sn{font-family:var(--num);font-size:58px;line-height:1.05;color:#fff;margin-top:4px}
+.ivory .step .sn{color:#fff}
+.step h3{font-size:21px;margin-top:20px;letter-spacing:.08em;color:#fff;line-height:1.6}
+.step p{color:rgba(255,255,255,.8);margin-top:16px;line-height:2.1;text-align:center}
+.step .chips{display:flex;flex-direction:column;gap:10px;width:100%;max-width:280px;margin-top:28px}
+.step .chips span{border:1px solid rgba(255,255,255,.35);padding:12px;font-size:var(--fs-label);letter-spacing:.06em}
+
+
+/* =========================================================
+   技師
+   ========================================================= */
+.tech{padding:0;background:var(--paper);position:relative}
+.tech .grid{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+.tech .img{position:relative}
+.tech .img .ph{position:absolute;inset:0;padding:24px}
+.tech .txt{padding:var(--space-section) var(--pad) var(--space-section) clamp(40px,6vw,100px);max-width:calc(var(--w)/2);}
+.tech .tname{font-family:var(--serif);font-size:24px;margin-top:40px;letter-spacing:.1em}
+.tech .trole{font-size:var(--fs-label);color:var(--gold);letter-spacing:.12em;margin-top:8px}
+.tech p{margin-top:24px;color:var(--ink-2)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.badges span{font-size:var(--fs-label);letter-spacing:.08em;border:1px solid var(--gold);padding:8px 14px;color:var(--gold-2)}
+
+/* =========================================================
+   お客様の声
+   ※ 2枚目・3枚目を下げているのは、3等分グリッドの均一さを崩すため（§18-2）
+   ========================================================= */
+.voice{padding:var(--space-section) 0;background:var(--black-3)}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);margin-top:70px}
+.vcard{background:var(--black-2);padding:38px 32px 32px;position:relative;border:1px solid var(--line)}
+.vcard:nth-child(2){transform:translateY(50px)}
+.vcard:nth-child(3){transform:translateY(100px)}
+.vcard .stars{color:var(--gold);letter-spacing:4px;font-size:var(--fs-label)}
+.vcard .vt-txt{margin-top:18px;font-family:var(--serif);font-size:16px;line-height:2;letter-spacing:.06em}
+.vcard .meta{margin-top:24px;font-size:var(--fs-label);letter-spacing:.08em;color:var(--mute);display:flex;align-items:center;gap:10px}
+.vcard .meta::before{content:"";width:22px;height:1px;background:var(--gold)}
+.voice .note{margin-top:130px;font-size:var(--fs-label);color:var(--mute);text-align:right}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+.faq{padding:var(--space-section) 0;background:var(--black)}
+.faq .grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(30px,6vw,90px);align-items:start}
+.faq .sticky{position:sticky;top:120px}
+.fitem{border-top:1px solid var(--line)}
+.fitem:last-child{border-bottom:1px solid var(--line)}
+.fq{width:100%;background:none;border:none;color:inherit;text-align:left;cursor:pointer;
+  display:grid;grid-template-columns:48px 1fr 40px;align-items:center;gap:12px;padding:28px 0;
+  font-family:var(--serif);font-size:18px;letter-spacing:.06em}
+.fq .qm{font-family:var(--en);font-size:26px;color:var(--gold);line-height:1}
+.fq .pm{justify-self:end;width:22px;height:22px;display:grid;place-items:center;position:relative}
+.fq .pm::before,.fq .pm::after{content:"";position:absolute;background:var(--gold-2);width:18px;height:1px;
+  transition:transform .45s cubic-bezier(.33,0,.2,1),background .3s}
+.fq .pm::after{transform:rotate(90deg)}
+.fitem.open .fq .pm::after{transform:rotate(0)}
+.fq:hover .pm::before,.fq:hover .pm::after{background:var(--gold)}
+/* 開閉する箱：中身は常にDOMにあり、高さだけを動かす */
+.fa{height:0;overflow:hidden;opacity:0}
+.fitem.open .fa{height:auto;opacity:1}
+.fa .a{display:grid;grid-template-columns:48px 1fr;gap:12px;padding:0 0 30px}
+.fa .a .am{font-family:var(--en);font-size:26px;color:#fff;line-height:1}
+.fa .a p{color:var(--ink-2)}
+
+/* =========================================================
+   特典
+   ========================================================= */
+.offer{padding:var(--space-section) 0;position:relative;overflow:hidden;background:var(--navy)}
+.offer-box{position:relative;border:1px solid var(--gold);padding:clamp(36px,5vw,64px);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.offer-box::before{content:"";position:absolute;inset:8px;border:1px solid rgba(178,154,104,.35);pointer-events:none}
+.offer .rib{display:inline-block;font-size:var(--fs-lead);font-weight:500;letter-spacing:.12em;
+  color:var(--navy);background:var(--gold-2);padding:12px 26px}
+.offer h3{font-size:clamp(21px,2.3vw,29px);margin-top:26px;line-height:1.7}
+.offer h3 .big{display:block;margin-top:6px;color:var(--gold-2);font-size:1.18em;white-space:nowrap}
+.offer p{margin-top:18px;color:rgba(255,255,255,.8)}
+.offer .cond{font-size:var(--fs-label);color:rgba(255,255,255,.6);margin-top:22px;line-height:1.9}
+.offer .ph{aspect-ratio:4/3}
+
+/* =========================================================
+   CTA（電話・フォーム・LINE・店舗）
+   ========================================================= */
+.cta{padding:var(--space-section) 0;background:var(--black);position:relative;overflow:hidden}
+.cta .head{text-align:center}
+.cta .head .eyebrow{justify-content:center}
+.cta .head .h2{font-size:clamp(28px,3.6vw,46px)}
+.cta .head .lead{margin:24px auto 0;text-align:center;max-width:none}
+/* §2-2：中央揃えの要素は均等割り付けの対象外 */
+.flow .head .lead,.cta .head .lead,.stats .lead{text-align:center}
+.cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(20px,3vw,40px);margin-top:70px}
+.cbox{border:1px solid var(--line);padding:clamp(28px,4vw,48px);background:var(--black-2);display:flex;flex-direction:column;justify-content:space-between;gap:26px;position:relative}
+.cbox .ct{font-size:var(--fs-label);letter-spacing:.12em;color:var(--gold)}
+.cbox h3{font-size:22px;margin-top:10px;letter-spacing:.1em}
+.cbox p{color:var(--ink-2);margin-top:12px}
+.cbox.tel{background:var(--navy);color:#fff;border-color:var(--gold)}
+.cbox.tel p{color:rgba(255,255,255,.7)}
+.cbox.tel .tel-big .n{color:#fff}
+.cbox.tel .tel-big small{color:var(--gold-2)}
+.cta-sub{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px);margin-top:clamp(20px,3vw,40px)}
+.linebox{display:flex;align-items:center;gap:20px;border:1px solid var(--line);padding:26px 30px;background:var(--black-2);text-decoration:none}
+/* §2-1 例外：アイコン内の文字。拡大すると枠に収まらない */
+.linebox .lico{width:52px;height:52px;flex:none;border-radius:14px;background:var(--line-green);color:#fff;display:grid;place-items:center;font-weight:700;font-size:12px;letter-spacing:.06em;font-family:var(--sans)}
+.linebox .lt{font-family:var(--serif);font-size:17px;letter-spacing:.06em}
+.linebox .ld{font-size:var(--fs-label);color:var(--mute);margin-top:4px}
+.linebox .ar{margin-left:auto;font-family:var(--en);font-size:20px;color:var(--gold)}
+
+/* =========================================================
+   コラム（横スクロール）
+   ========================================================= */
+.column{padding:var(--space-section) 0;background:var(--black-2);overflow:hidden}
+.column .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.column .head .more{font-size:var(--fs-label);letter-spacing:.1em;text-decoration:none;color:#fff;display:inline-flex;align-items:center;gap:10px;padding-bottom:6px;border-bottom:1px solid var(--gold)}
+.crail{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,2.6vw,40px) clamp(18px,2.4vw,32px);margin-top:60px}
+.ccard{text-decoration:none;color:inherit;display:block}
+/* 1枚目だけ大きく見せて単調さを避ける */
+.ccard.feat{grid-column:span 2}
+.ccard.feat .ph{aspect-ratio:16/9}
+.ccard.feat h3{font-size:21px}
+.ccard .ph{aspect-ratio:4/3;transition:transform .5s}
+.ccard:hover .ph{transform:translateY(-6px)}
+.ccard .meta{display:flex;gap:14px;align-items:center;margin-top:18px;font-size:var(--fs-label);letter-spacing:.08em}
+.ccard .cat{color:var(--gold);border:1px solid var(--gold);padding:3px 10px}
+.ccard .date{color:var(--mute);font-family:var(--num);letter-spacing:.06em;font-size:var(--fs-label)}
+.ccard h3{font-size:17px;line-height:1.7;margin-top:14px;letter-spacing:.04em}
+.ccard p{color:var(--ink-2);margin-top:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.column .mob-more{display:none}
+
+/* =========================================================
+   店舗
+   ========================================================= */
+.store{padding:var(--space-section) 0;background:var(--black)}
+.store .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.store-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,32px);margin-top:56px}
+.scard{border:1px solid var(--line);background:var(--black-2);display:flex;flex-direction:column}
+.scard.main{border-color:var(--gold)}
+.scard .stag{font-size:var(--fs-label);letter-spacing:.1em;padding:8px 14px;background:rgba(255,255,255,.06);color:var(--mute);border-bottom:1px solid var(--line)}
+.scard.main .stag{background:var(--gold);color:#fff}
+.scard .sin{padding:26px 24px 28px;display:flex;flex-direction:column;flex:1}
+.scard .sname{font-family:var(--serif);font-size:19px;letter-spacing:.08em;line-height:1.5}
+.scard dl{margin-top:18px;border-top:1px solid var(--line);flex:1}
+.scard dl div{display:grid;grid-template-columns:68px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);line-height:1.8}
+.scard dt{color:var(--mute);letter-spacing:.08em;font-size:var(--fs-label);padding-top:3px}
+.scard dd{color:var(--ink)}
+.scard .stel{display:block;font-family:var(--num);font-size:24px;letter-spacing:.04em;color:#fff;text-decoration:none;margin-top:20px}
+.scard .sbtn{display:flex;gap:10px;margin-top:16px}
+.scard .sbtn a{flex:1;text-align:center;font-size:var(--fs-label);letter-spacing:.08em;padding:12px 6px;text-decoration:none;border:1px solid var(--line);color:var(--ink)}
+.scard .sbtn a.g{background:var(--gold);border-color:var(--gold);color:#fff}
+.store .map{margin-top:clamp(24px,3vw,40px);position:relative;min-height:380px}
+.store .map .ph{position:absolute;inset:0}
+.store .snote{font-size:var(--fs-label);color:var(--mute);margin-top:22px;line-height:1.9}
+
+/* =========================================================
+   フッター
+   ========================================================= */
+.foot{background:var(--black-3);color:rgba(255,255,255,.7);border-top:1px solid var(--line);padding:clamp(48px,6vw,70px) 0 clamp(90px,10vw,130px)}
+.foot .grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-end}
+.foot .brand{font-family:var(--serif);font-size:20px;color:#fff;letter-spacing:.14em}
+.foot .addr{font-size:var(--fs-label);margin-top:16px;line-height:2}
+.foot .links{display:flex;gap:22px;flex-wrap:wrap}
+/* §2-1 例外：フッターの機能的なリンク（§1-5）。本文ではなくさりげなく置く要素 */
+.foot .links a{text-decoration:none;opacity:.7;font-family:var(--serif);font-size:12px;font-weight:400;letter-spacing:.1em}
+.foot .links a:hover{opacity:1;color:var(--gold-2)}
+/* §2-1 例外：コピーライト表記 */
+.foot .copy{margin-top:40px;font-size:12px;letter-spacing:.1em;font-family:var(--en);opacity:.5}
+
+/* =========================================================
+   固定CTAバー（SP）
+   ========================================================= */
+.fixbar{position:fixed;left:0;right:0;bottom:0;z-index:65;display:none;gap:1px;background:var(--black-3);border-top:1px solid var(--line-w)}
+.fixbar a{flex:1;display:flex;align-items:center;justify-content:center;padding:15px 6px;text-decoration:none;color:#fff;font-size:var(--fs-body);letter-spacing:.08em;font-weight:500;background:var(--black-2)}
+.fixbar a.f-tel{background:var(--gold);color:#fff}
+.fixbar a.f-tel small{color:rgba(255,255,255,.85)}
+
+/* =========================================================
+   スクロール表示アニメーション
+   ========================================================= */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.marq .track{animation:none}}
+
+/* =========================================================
+   レスポンシブ
+   ========================================================= */
+@media (max-width:1024px){
+  .flow .wrap{max-width:var(--w)}
+  .steps{--tip:36px}
+  .step,.step.s1,.step.s2{padding:44px 26px 40px;padding-right:calc(26px + var(--tip))}
+  .fv-in{grid-template-columns:1fr}
+  .scroll-ind{display:none}
+  .worry .grid,.compare .grid,.price .grid,.faq .grid{grid-template-columns:1fr}
+  .worry .sticky,.faq .sticky{position:static}
+  .worry .figs{width:100%;margin-bottom:0}
+  .worry .ph{aspect-ratio:16/10}
+  .worry .ph.small{position:static;width:100%;aspect-ratio:16/10;border:none;margin-top:12px}
+  .rb,.rb.r3{grid-template-columns:1fr;margin-top:80px}
+  .rb.r1 .img,.rb.r3 .img .ph{margin-left:0}
+  .rb.r1 .img .ph,.rb.r3 .img .ph{width:100%}
+  .rb.r2 .img{order:0}
+  .rb.r2 .img .ph{width:100%;transform:none}
+  .rb.r2 .img .ph2{display:none}
+  .price .imgs{padding-top:0;margin-top:40px}
+  .price .imgs .ph{width:100%;aspect-ratio:16/10}
+  .price .imgs .ph.light{display:none}
+  .tech .grid{grid-template-columns:1fr}
+  .store-grid{grid-template-columns:1fr}
+  .tech .img{aspect-ratio:16/10}
+  .tech .txt{padding:80px var(--pad);max-width:none}
+  .store .map{min-height:280px}
+  .vgrid{grid-template-columns:1fr}
+  .crail{grid-template-columns:1fr 1fr}
+  .ccard.feat{grid-column:span 2}
+  .ccard.feat .ph{aspect-ratio:16/9}
+  .vcard:nth-child(2),.vcard:nth-child(3){transform:none}
+  .voice .note{margin-top:30px}
+  .cta-grid,.cta-sub{grid-template-columns:1fr}
+  .offer-box{grid-template-columns:1fr}
+  .offer::before{display:none}
+}
+@media (max-width:1180px){
+  .gnav{display:none}
+  .logo .t2{display:none}
+  .logo .mk{width:104px}
+}
+@media (max-width:1000px){
+  .dwrap{grid-template-columns:1fr;gap:40px}
+  .drawer{padding-top:100px}
+  .dcopy{font-size:20px}
+}
+@media (max-width:760px){
+  body{padding-bottom:64px}
+  .fixbar{display:flex}
+  .logo .t1{display:none}
+  .logo .div{display:none}
+  .logo .mk{width:92px}
+  .hd{padding:14px 16px}
+  .drawer{padding:88px 22px 40px}
+  .drawer .logo{margin-bottom:24px}
+  .drawer .logo .mk{width:100px}
+  .dnav{grid-template-columns:1fr}
+  .dnav a{padding:14px 4px;font-size:17px}
+  .dstores{grid-template-columns:1fr;gap:18px}
+  .dstore{display:grid;grid-template-columns:112px 1fr;gap:14px;align-items:center}
+  .dstore .sn2{margin-top:0}
+  .fv-in{padding:130px var(--pad) 90px}
+  .fv h1{font-size:clamp(26px,7.4vw,36px);white-space:normal}
+  .fv-trust{margin-top:-46px}
+  .fv-trust>div{padding:18px 8px}
+  .fv-trust .n{font-size:28px}
+  .worry-list li{grid-template-columns:44px 1fr;padding:22px 0}
+  .worry-list .t{font-size:17px}
+  .steps{--tip:30px;grid-template-columns:1fr;gap:10px}
+  .step,.step.s1,.step.s2{padding:38px 24px calc(34px + var(--tip));
+    clip-path:polygon(0 0,100% 0,100% calc(100% - var(--tip)),50% 100%,0 calc(100% - var(--tip)))}
+  .step.s3{padding:38px 24px 40px;clip-path:none}
+  .step .sn{font-size:52px}
+  .step .ph{margin-top:10px}
+  .ctable{font-size:var(--fs-label)}
+  .ctable th,.ctable td{padding:14px 6px}
+  .reason-cta{padding:36px 24px;margin-top:70px}
+  .column .head .more{display:none}
+  .column .mob-more{display:block;text-align:center;margin-top:24px}
+  .foot{padding-bottom:90px}
+  .crail{grid-template-columns:1fr}
+  .ccard.feat{grid-column:auto}
+  .ccard.feat .ph,.ccard .ph{aspect-ratio:4/3}
+  .fq{font-size:16px;grid-template-columns:38px 1fr 34px}
+  .fa .a{grid-template-columns:38px 1fr}
+}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="navToggle">
+
+<!-- ============================== -->
+<!-- Section: header -->
+<!-- ============================== -->
+<header class="hd" id="hd">
+  <a class="logo" href="#top">
+    <span class="mk"><img src="images/logo.png" alt="ジュエリー＆ウォッチ ミムラ"></span>
+    <span class="div"></span>
+    <span>
+      <span class="t1">時計修理相談室</span>
+      <span class="t2">WATCH REPAIR SALON ｜ SINCE 1913</span>
+    </span>
+  </a>
+  <nav class="gnav">
+    <a href="#reason">選ばれる理由</a>
+    <a href="#price">料金の目安</a>
+    <a href="#flow">修理の流れ</a>
+    <a href="#store">店舗案内</a>
+    <a href="tel:000-000-0000" class="tel" data-cta="header-tel"><small>受付 10:00–19:00</small>000-000-0000</a>
+    <a href="contact.html" class="hcta" data-cta="header-form">お問い合わせ</a>
+  </nav>
+  <label class="hamb" for="navToggle" aria-label="メニュー">
+    <span class="bars"><i></i><i></i></span>
+    <span class="lb"></span>
+  </label>
+</header>
+<!-- /Section: header -->
+
+<!-- ドロワー（SP） -->
+<nav class="drawer">
+  <div class="dwrap">
+    <div class="dleft">
+      <a class="logo" href="#top">
+        <span class="mk"><img src="images/logo.png" alt="ジュエリー＆ウォッチ ミムラ"></span>
+        <span class="div"></span>
+        <span>
+          <span class="t1">時計修理相談室</span>
+          <span class="t2">WATCH REPAIR SALON ｜ SINCE 1913</span>
+        </span>
+      </a>
+      <p class="dcopy">その時計、あきらめる前に<br>一度お見せください。</p>
+      <p class="dsub">他店・通販で購入された時計も歓迎。お見積りは無料です。</p>
+      <a class="dtel" href="tel:000-000-0000"><small>お電話でのご相談 10:00–19:00</small><span class="n">000-000-0000</span></a>
+      <div class="dcta"><a class="btn btn-gold" href="contact.html">お問い合わせフォーム <span class="ar">→</span></a></div>
+    </div>
+    <div class="dright">
+      <ul class="dnav">
+        <li><a href="#reason">選ばれる理由</a></li>
+        <li><a href="#voice">お客様の声</a></li>
+        <li><a href="#price">料金の目安</a></li>
+        <li><a href="#faq">よくあるご質問</a></li>
+        <li><a href="#flow">修理の流れ</a></li>
+        <li><a href="#column">お役立ちコラム</a></li>
+        <li><a href="#store">店舗案内</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+
+      <div class="dstore-head">店舗案内</div>
+      <div class="dstores">
+        <a class="dstore" href="#store">
+          <div class="ph has-img in"><img src="images/store-yumetown.jpg" alt="ゆめタウン福山店の売場"></div>
+          <div class="sn2"><b>時計修理相談室</b>ゆめタウン福山店</div>
+          <div class="st2">084-971-0055</div>
+          <div class="sh2">10:00–21:00【要確認】</div>
+        </a>
+        <a class="dstore" href="#store">
+          <div class="ph"><span><small>要撮影</small>天満屋福山店<br>店舗写真</span></div>
+          <div class="sn2"><b>修理のお受付</b>天満屋福山店</div>
+          <div class="st2">084-927-2171</div>
+          <div class="sh2">10:00–19:00【要確認】</div>
+        </a>
+        <a class="dstore" href="#store">
+          <div class="ph"><span><small>要撮影</small>フジグラン神辺店<br>店舗写真</span></div>
+          <div class="sn2"><b>修理のお受付</b>フジグラン神辺店</div>
+          <div class="st2">084-963-7727</div>
+          <div class="sh2">10:00–21:00【要確認】</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<span id="top"></span>
+
+<!-- ============================== -->
+<!-- Section: fv -->
+<!-- ============================== -->
+<section class="fv">
+  <div class="fv-bg"><div class="ph rv-up has-img dim"><img src="images/fv.jpg" alt="ルーペを使って時計を点検する技師" style="object-position:58% 50%"></div></div>
+  <div class="fv-in">
+    <div class="fv-copy rv">
+      <span class="fv-badge">創業110年・福山 ｜ 他店購入品もOK</span>
+      <h1>その時計、<br><em>あきらめる前に</em><br>一度お見せください。</h1>
+      <p class="sub">ネット通販・他店で購入された時計も歓迎。1級時計修理技能士との提携で、正規店品質の修理を適正価格で。まずは無料でお見積りします。</p>
+      <div class="fv-cta">
+        <a class="tel-big" href="tel:000-000-0000"><small>お電話でのご相談</small><span class="n">000-000-0000</span><span class="h">受付 10:00–19:00</span></a>
+        <a class="btn btn-line" href="#store">店舗・アクセスを見る <span class="ar">→</span></a>
+      </div>
+      <p class="fv-note">予約不要・持ち込み点数制限なし・お見積り無料</p>
+    </div>
+  </div>
+  <div class="scroll-ind" aria-hidden="true"><i></i></div>
+</section>
+<!-- /Section: fv -->
+<div class="fv-trust rv">
+  <div><div class="n">110<b>年</b></div><div class="c">福山での実績</div></div>
+  <div><div class="n" style="font-family:var(--serif);font-size:30px">無料</div><div class="c">お見積り</div></div>
+  <div><div class="n" style="font-family:var(--serif);font-size:30px">当日</div><div class="c">対応可※</div></div>
+</div>
+
+<!-- マーキー帯 -->
+<div class="marq" aria-hidden="true">
+  <div class="track">
+    <span>その時計、あきらめる前に一度お見せください。<span class="en">Don't give up on your watch yet.</span></span>
+    <span>どこで買った時計でも、まずは拝見します。<span class="en">Any watch, from anywhere.</span></span>
+    <span>その時計、あきらめる前に一度お見せください。<span class="en">Don't give up on your watch yet.</span></span>
+    <span>どこで買った時計でも、まずは拝見します。<span class="en">Any watch, from anywhere.</span></span>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- Section: worry -->
+<!-- ============================== -->
+<section class="worry">
+  <div class="wrap grid">
+    <div class="sticky rv">
+      <div class="eyebrow" aria-hidden="true"></div>
+      <h2 class="h2">こんなお悩み、<br><span class="thin">そのままにしていませんか？</span></h2>
+      <div class="figs">
+        <div class="ph has-img dim"><img src="images/worry.jpg" alt="ケースに並んだ腕時計"></div>
+        <div class="ph small rv-up has-img"><img src="images/worry-sq.jpg" alt="商業施設内の「宝石・時計 修理相談室」ブース"></div>
+      </div>
+    </div>
+    <div>
+      <ul class="worry-list">
+        <li class="rv"><div><div class="t">買ったお店がもう無い</div><div class="d">通販や閉店した店で購入し、どこに相談すればいいか分からない。</div></div></li>
+        <li class="rv"><div><div class="t">他店で「うちでは無理」と断られた</div><div class="d">古い時計や海外製で、受け付けてもらえなかった。</div></div></li>
+        <li class="rv"><div><div class="t">メーカー修理が高額すぎる</div><div class="d">見積もりを見て、直すのをためらってしまった。</div></div></li>
+        <li class="rv"><div><div class="t">大切な形見・思い出の時計を止めたくない</div><div class="d">親から受け継いだ時計を、また動かしたい。</div></div></li>
+      </ul>
+      <p class="worry-lead rv">そのお悩み、三村時計店で解決できます</p>
+    </div>
+  </div>
+</section>
+<!-- /Section: worry -->
+
+<!-- ============================== -->
+<!-- Section: reason -->
+<!-- ============================== -->
+<section class="reason ivory" id="reason">
+  <div class="wrap">
+    <div class="head rv">
+      <div>
+        <div class="eyebrow" aria-hidden="true"></div>
+        <h2 class="h2">福山で選ばれ続ける<br><span class="thin">3つの理由</span></h2>
+      </div>
+    </div>
+
+    <div class="rb r1">
+      <div class="img rv"><div class="ph rv-left has-img"><img src="images/reason01.jpg" alt="店頭での相談風景"></div></div>
+      <div class="rv d1">
+        <div class="num-big">01</div>
+        <div class="lbl">どんな時計も断りません</div>
+        <h3>購入元を問わず、<br>まずは拝見します</h3>
+        <p>通販品・他店購入品・海外ブランド・古い機械式まで。「どこで買ったか」ではなく「どう直せるか」を一緒に考えます。断られてきた時計こそ、ご相談ください。</p>
+      </div>
+    </div>
+
+    <div class="rb r2">
+      <div class="img rv">
+        <div class="ph has-img dim"><img src="images/reason02.jpg" alt="提携工房で作業する技師"></div>
+        <div class="ph ph2 rv-up has-img"><img src="images/reason02b.jpg" alt="機械式時計のムーブメント"></div>
+      </div>
+      <div class="rv d1">
+        <div class="num-big">02</div>
+        <div class="lbl">正規店品質 × 適正価格</div>
+        <h3>1級技能士（経験約30年）が<br>仕上げます</h3>
+        <p>日本ゴールドチェーン加盟の提携工房と連携。メーカー正規修理と同等の品質を、より抑えた価格でご提供します。見積もり後の追加請求もありません。</p>
+      </div>
+    </div>
+
+    <div class="rb r3">
+      <div class="img rv"><div class="ph rv-left has-img"><img src="images/reason03.jpg" alt="ゆめタウン福山店内のジュエリー＆ウォッチ ミムラ売場"></div></div>
+      <div class="rv d1">
+        <div class="num-big">03</div>
+        <div class="lbl">創業110年・商業施設内で安心</div>
+        <h3>いつものお買い物ついでに<br>立ち寄れます</h3>
+        <p>ゆめタウン福山店内の専用ブース。明るく入りやすく、駐車場も完備。110年地域で続けてきた信頼で、初めての方も安心してお任せいただけます。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="reason-cta rv">
+    <div class="ttl"><small>Contact</small>まずはお電話で、時計の状態をお聞かせください</div>
+    <a class="tel-big" href="tel:000-000-0000"><small>受付 10:00–19:00</small><span class="n" style="color:#fff">000-000-0000</span></a>
+  </div>
+</section>
+<!-- /Section: reason -->
+
+<!-- ============================== -->
+<!-- Section: compare -->
+<!-- ============================== -->
+<section class="compare dark">
+  <div class="wrap grid">
+    <div class="rv">
+      <div class="eyebrow" aria-hidden="true"></div>
+      <h2 class="h2">他店・メーカーとの<br><span class="thin">違い</span></h2>
+      <p class="lead">「どこに頼めばいいか」で迷ったら、この表をご覧ください。</p>
+    </div>
+    <div class="rv d1">
+      <table class="ctable">
+        <thead>
+          <tr><th style="width:30%;text-align:left"></th><th class="us">三村時計店</th><th>メーカー<br>正規修理</th><th>一般の<br>量販店</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>他店・通販購入品</th><td class="us o">◎</td><td class="x">△</td><td class="o">○</td></tr>
+          <tr><th>料金</th><td class="us">適正</td><td>高い</td><td>安い</td></tr>
+          <tr><th>技能士の対応</th><td class="us o">◎</td><td class="o">○</td><td class="x">×</td></tr>
+          <tr><th>相談のしやすさ</th><td class="us">対面</td><td class="x">郵送</td><td>対面</td></tr>
+          <tr><th>納期の目安</th><td class="us">早い</td><td>数週間〜</td><td>まちまち</td></tr>
+        </tbody>
+      </table>
+      <p class="note">※ 修理内容により異なります。詳しくは店頭でご確認ください。</p>
+    </div>
+  </div>
+</section>
+<!-- /Section: compare -->
+
+<!-- ============================== -->
+<!-- Section: price -->
+<!-- ============================== -->
+<section class="price" id="price">
+  <div class="wrap grid">
+    <div class="rv">
+      <div class="eyebrow" aria-hidden="true"></div>
+      <h2 class="h2">わかりやすい<br><span class="thin">料金の目安</span></h2>
+      <p class="lead">現物を拝見のうえ、作業前に必ずお見積りをお伝えします。ご納得いただいてからの作業です。</p>
+      <div class="plist">
+        <div class="prow"><div><span class="pn">電池交換</span><span class="ps">その場で対応可</span></div><span class="pv">¥1,000<b>〜</b></span></div>
+        <div class="prow"><div><span class="pn">バンド調整・交換</span></div><span class="pv">¥1,500<b>〜</b></span></div>
+        <div class="prow"><div><span class="pn">分解掃除（オーバーホール）</span><span class="ps">機械式</span></div><span class="pv">¥10,000<b>〜</b></span></div>
+        <div class="prow"><div><span class="pn">ガラス・風防交換</span></div><span class="pv">¥3,000<b>〜</b></span></div>
+        <div class="prow"><div><span class="pn">外装・防水・パッキン</span></div><span class="pv" style="font-family:var(--serif);font-size:16px">お見積り</span></div>
+      </div>
+      <div class="pfree">お見積り・ご相談は何点でも無料です</div>
+    </div>
+    <div class="imgs rv d1">
+      <div class="ph rv-up has-img dim"><img src="images/price-tall.jpg" alt="分解された腕時計の部品"></div>
+      <div class="ph has-img"><img src="images/price-sq.jpg" alt="分解掃除中の腕時計"></div>
+    </div>
+  </div>
+</section>
+<!-- /Section: price -->
+
+<!-- ============================== -->
+<!-- Section: stats -->
+<!-- ============================== -->
+<section class="stats">
+  <div class="bg"><div class="ph has-img dim"><img src="images/stats.jpg" alt="並べられた腕時計"></div></div>
+  <div class="wrap in">
+    <div class="rv" style="text-align:center">
+      <div class="eyebrow" style="justify-content:center" aria-hidden="true"></div>
+      <h2 class="h2" style="color:#fff">数字で見る、三村時計店</h2>
+    </div>
+    <div class="grid rv d1">
+      <div><div class="sn">110<b>年</b></div><div class="sc">福山での営業実績</div></div>
+      <div><div class="sn">30<b>年</b></div><div class="sc">提携技師の経験年数</div></div>
+      <div><div class="sn">★4.8</div><div class="sc">Googleクチコミ<br>評価※</div></div>
+    </div>
+  </div>
+</section>
+<!-- /Section: stats -->
+
+<!-- ============================== -->
+<!-- Section: flow -->
+<!-- ============================== -->
+<section class="flow ivory" id="flow">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow" aria-hidden="true"></div>
+      <h2 class="h2">ご来店から<span class="thin">3ステップ</span></h2>
+      <p class="lead" style="margin:20px auto 0">はじめての方でも迷いません。予約は不要です。</p>
+    </div>
+    <div class="steps rv">
+      <div class="step s1">
+        <div class="sn">1</div>
+        <h3>ご来店（予約不要）</h3>
+        <p>ゆめタウン福山店内のブースへ。時計をお持ちください。</p>
+        <div class="chips"><span>予約不要</span><span>複数点まとめてOK</span></div>
+      </div>
+      <div class="step s2">
+        <div class="sn">2</div>
+        <h3>その場で無料お見積り</h3>
+        <p>状態を拝見し、費用と納期をその場でご説明します。</p>
+        <div class="chips"><span>お見積り無料</span><span>ご納得のうえ作業</span></div>
+      </div>
+      <div class="step s3">
+        <div class="sn">3</div>
+        <h3>お預かり → 完了のご連絡</h3>
+        <p>簡単な修理は当日対応も可能です。</p>
+        <div class="chips"><span>当日対応も可能</span><span>電話・LINEでご連絡</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Section: flow -->
+
+<!-- ============================== -->
+<!-- Section: tech -->
+<!-- ============================== -->
+<section class="tech">
+  <div class="grid">
+    <div class="img rv"><div class="ph rv-up has-img dim"><img src="images/tech.jpg" alt="ルーペで時計を点検する技師"></div></div>
+    <div class="txt rv d1">
+      <div class="eyebrow" aria-hidden="true"></div>
+      <h2 class="h2">確かな腕が、<br><span class="thin">丁寧に直します</span></h2>
+      <div class="tname">提携工房 修理技師</div>
+      <div class="trole">1級時計修理技能士（経験約30年）</div>
+      <p>国内外のブランド時計から、思い出の詰まった古い時計まで。一つひとつの構造を見極め、長く使い続けられるよう心を込めて仕上げます。</p>
+      <div class="badges"><span>日本ゴールドチェーン加盟</span><span>1級時計修理技能士</span><span>正規店品質</span></div>
+    </div>
+  </div>
+</section>
+<!-- /Section: tech -->
+
+<!-- ============================== -->
+<!-- Section: voice -->
+<!-- ============================== -->
+<section class="voice" id="voice">
+  <div class="wrap">
+    <div class="rv">
+      <div class="eyebrow" aria-hidden="true"></div>
+      <h2 class="h2">お客様の<span class="thin">声</span></h2>
+    </div>
+    <div class="vgrid rv">
+      <div class="vcard"><div class="stars">★★★★★</div><p class="vt-txt">通販で買った時計の電池交換を、その場で対応してもらえました。丁寧に説明してくれて安心。</p><div class="meta">50代・女性／電池交換</div></div>
+      <div class="vcard"><div class="stars">★★★★★</div><p class="vt-txt">他店で断られた古い機械式を、きれいに直していただきました。父の形見が動き出して感激です。</p><div class="meta">60代・男性／オーバーホール</div></div>
+      <div class="vcard"><div class="stars">★★★★★</div><p class="vt-txt">見積もりが明朗で、追加料金もなし。買い物ついでに寄れるのも助かりました。</p><div class="meta">40代・女性／バンド交換</div></div>
+    </div>
+    <p class="note">※ 掲載の声はイメージです。実際のクチコミに差し替えます。</p>
+  </div>
+</section>
+<!-- /Section: voice -->
+
+<!-- ============================== -->
+<!-- Section: faq -->
+<!-- ============================== -->
+<section class="faq" id="faq">
+  <div class="wrap grid">
+    <div class="sticky rv">
+      <div class="eyebrow" aria-hidden="true"></div>
+      <h2 class="h2">よくある<br><span class="thin">ご質問</span></h2>
+    </div>
+    <div class="rv d1">
+      <div class="fitem open">
+        <button class="fq" type="button" aria-expanded="true" data-acc="faq"><span class="qm">Q</span>見積もりだけでもいいですか？<span class="pm"></span></button>
+        <div class="fa"><div class="a"><span class="am">A</span><p>もちろんです。お見積り・ご相談は無料です。金額を聞いてからご検討いただけます。</p></div></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" type="button" aria-expanded="false" data-acc="faq"><span class="qm">Q</span>他店・ネットで買った時計でも直せますか？<span class="pm"></span></button>
+        <div class="fa"><div class="a"><span class="am">A</span><p>はい、購入元を問わず承ります。まずは現物を拝見させてください。</p></div></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" type="button" aria-expanded="false" data-acc="faq"><span class="qm">Q</span>修理にどのくらい日数がかかりますか？<span class="pm"></span></button>
+        <div class="fa"><div class="a"><span class="am">A</span><p>電池交換など簡単なものは当日対応も可能です。オーバーホール等は内容によりお預かりとなります。</p></div></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" type="button" aria-expanded="false" data-acc="faq"><span class="qm">Q</span>予約は必要ですか？<span class="pm"></span></button>
+        <div class="fa"><div class="a"><span class="am">A</span><p>予約不要です。営業時間内にお気軽にお立ち寄りください。</p></div></div>
+      </div>
+      <div class="fitem">
+        <button class="fq" type="button" aria-expanded="false" data-acc="faq"><span class="qm">Q</span>複数の時計をまとめて相談できますか？<span class="pm"></span></button>
+        <div class="fa"><div class="a"><span class="am">A</span><p>点数制限はありません。何点でもまとめてお持ちください。</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Section: faq -->
+
+<!-- ============================== -->
+<!-- Section: offer -->
+<!-- ============================== -->
+<section class="offer dark">
+  <div class="wrap">
+    <div class="offer-box rv">
+      <div>
+        <span class="rib">このページを見た方限定</span>
+        <h3>ご来店時に画面をご提示で<br><span class="big">電池交換 【○○円引き】</span></h3>
+        <p>スタッフに「ホームページを見た」とお伝えください。</p>
+        <div class="cond">※ 他の割引との併用はできません。有効期限と対象は店頭にてご確認ください。</div>
+      </div>
+      <div class="ph has-img"><img src="images/offer.jpg" alt="腕にした時計"></div>
+    </div>
+  </div>
+</section>
+<!-- /Section: offer -->
+
+<!-- ============================== -->
+<!-- Section: cta -->
+<!-- ============================== -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow" aria-hidden="true"></div>
+      <h2 class="h2">まずは、お気軽に<br><span class="thin">ご相談ください</span></h2>
+      <p class="lead">「これって直る？」の一言からで大丈夫です。無料お見積りだけでも歓迎しています。</p>
+    </div>
+
+    <div class="cta-grid">
+      <div class="cbox tel rv">
+        <div>
+          <div class="ct">最短でお答えします</div>
+          <h3>お電話でのご相談</h3>
+          <p>お急ぎの場合はお電話が確実です。時計の状態を伺い、おおよその費用と納期をお伝えします。</p>
+        </div>
+        <a class="tel-big" href="tel:000-000-0000"><small>受付 10:00–19:00</small><span class="n">000-000-0000</span><span class="h">年中無休（施設休館日を除く）【要確認】</span></a>
+      </div>
+      <div class="cbox rv d1">
+        <div>
+          <div class="ct">24時間受付</div>
+          <h3>メールでのお問い合わせ</h3>
+          <p>写真を添えてご相談いただけます。翌営業日までにご返信いたします。</p>
+        </div>
+        <a class="btn btn-gold" href="contact.html" data-cta="cta-form">お問い合わせフォームへ <span class="ar">→</span></a>
+      </div>
+    </div>
+
+    <div class="cta-sub">
+      <a class="linebox rv" href="#">
+        <span class="lico">LINE</span>
+        <span><div class="lt">LINEで相談・修理完了のお知らせ</div><div class="ld">友だち追加で、進捗やお得な情報をお届けします。</div></span>
+        <span class="ar">→</span>
+      </a>
+      <a class="linebox rv d1" href="#store">
+        <span class="lico" style="background:var(--navy);font-family:var(--en);font-size:14px;letter-spacing:.1em">MAP</span>
+        <span><div class="lt">ご来店（予約不要）</div><div class="ld">ゆめタウン福山店内・駐車場無料。買い物ついでにお立ち寄りください。</div></span>
+        <span class="ar">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- /Section: cta -->
+
+<!-- ============================== -->
+<!-- Section: column -->
+<!-- ============================== -->
+<section class="column" id="column">
+  <div class="wrap">
+    <div class="head rv">
+      <div>
+        <div class="eyebrow" aria-hidden="true"></div>
+        <h2 class="h2">時計修理の<span class="thin">お役立ちコラム</span></h2>
+        <p class="lead">「オーバーホールって何？」「修理費用の相場は？」など、よくあるご質問にプロがお答えします。修理を検討する前に、ぜひご覧ください。</p>
+      </div>
+      <a class="more" href="三村時計店様_コラム一覧ページ.html" data-link="column-index">コラムをすべて見る <span>→</span></a>
+    </div>
+    <div class="crail rv">
+      <a class="ccard feat" href="三村時計店様_コラム記事サンプル.html"><div class="ph has-img"><img src="images/col1.jpg" alt="分解された自動巻き時計の部品" loading="lazy"></div><div class="meta"><span class="cat">オーバーホール</span><span class="date">2026.12.15</span></div><h3>腕時計のオーバーホール費用の相場は？頻度と目安をプロが解説</h3><p>機械式時計は定期的な分解掃除が必要です。費用の目安や、どのくらいの頻度で行うべきかを分かりやすくご説明します。</p></a>
+      <a class="ccard" href="#"><div class="ph has-img"><img src="images/col2.jpg" alt="クォーツ時計の測定機" loading="lazy"></div><div class="meta"><span class="cat">電池交換</span><span class="date">2026.12.10</span></div><h3>時計の電池交換、どこでできる？料金と所要時間の目安</h3><p>「電池が切れたまま」になっていませんか？その場でできる電池交換の料金や、注意したい防水時計のポイントを解説します。</p></a>
+      <a class="ccard" href="#"><div class="ph has-img"><img src="images/col3.jpg" alt="工房での修理作業" loading="lazy"></div><div class="meta"><span class="cat">修理の基礎知識</span><span class="date">2026.12.05</span></div><h3>他店で買った時計・通販の時計は修理してもらえる？</h3><p>購入したお店が分からない、閉店してしまった…そんな時計もご相談ください。当店の対応範囲についてご案内します。</p></a>
+      <a class="ccard" href="#"><div class="ph has-img"><img src="images/col4.jpg" alt="金属ベルトの腕時計" loading="lazy"></div><div class="meta"><span class="cat">ベルト・バンド</span><span class="date">2026.11.28</span></div><h3>腕時計のベルト調整・交換の方法と費用｜金属・革の違い</h3><p>サイズが合わない、劣化してきた革ベルト。素材ごとの交換費用や、長持ちさせるお手入れのコツをご紹介します。</p></a>
+      <a class="ccard" href="#"><div class="ph has-img"><img src="images/col5.jpg" alt="古い機械式時計の機構" loading="lazy"></div><div class="meta"><span class="cat">修理の基礎知識</span><span class="date">2026.11.20</span></div><h3>大切な形見の時計を直したい｜古い機械式時計の修理について</h3><p>親から受け継いだ思い出の時計。動かなくなった古い機械式時計でも、再び動き出す可能性があります。まずはご相談を。</p></a>
+    </div>
+    <div class="mob-more"><a class="btn btn-line" href="三村時計店様_コラム一覧ページ.html">コラム一覧を見る <span class="ar">→</span></a></div>
+  </div>
+</section>
+<!-- /Section: column -->
+
+<!-- ============================== -->
+<!-- Section: store -->
+<!-- ============================== -->
+<section class="store" id="store">
+  <div class="wrap">
+    <div class="head rv">
+      <div>
+        <div class="eyebrow" aria-hidden="true"></div>
+        <h2 class="h2">店舗<span class="thin">案内</span></h2>
+        <p class="lead">福山市内・神辺の各店でお受けしています。お近くの店舗へ、そのままお持ちください。</p>
+      </div>
+    </div>
+
+    <div class="store-grid rv">
+      <div class="scard main">
+        <div class="stag">時計修理相談室（受付ブース）</div>
+        <div class="sin">
+          <div class="sname">ジュエリー＆ウォッチ ミムラ<br>ゆめタウン福山店</div>
+          <dl>
+            <div><dt>住所</dt><dd>広島県福山市入船町3丁目1-60<br>ゆめタウン福山店内</dd></div>
+            <div><dt>営業</dt><dd>10:00〜21:00【要確認】</dd></div>
+            <div><dt>駐車場</dt><dd>ゆめタウン駐車場（無料）</dd></div>
+          </dl>
+          <a class="stel" href="tel:084-971-0055">084-971-0055</a>
+          <div class="sbtn"><a class="g" href="tel:084-971-0055">電話する</a><a href="#">地図を見る</a></div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="stag">修理のお受付</div>
+        <div class="sin">
+          <div class="sname">ジュエリー＆ウォッチ ミムラ<br>天満屋福山店</div>
+          <dl>
+            <div><dt>住所</dt><dd>広島県福山市元町1-1<br>天満屋福山店内</dd></div>
+            <div><dt>営業</dt><dd>10:00〜19:00【要確認】</dd></div>
+            <div><dt>駐車場</dt><dd>提携駐車場をご利用ください</dd></div>
+          </dl>
+          <a class="stel" href="tel:084-927-2171">084-927-2171</a>
+          <div class="sbtn"><a class="g" href="tel:084-927-2171">電話する</a><a href="#">地図を見る</a></div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="stag">修理のお受付</div>
+        <div class="sin">
+          <div class="sname">ジュエリー＆ウォッチ ミムラ<br>フジグラン神辺店</div>
+          <dl>
+            <div><dt>住所</dt><dd>広島県福山市神辺町新道上2-10-26<br>フジグラン神辺店内</dd></div>
+            <div><dt>営業</dt><dd>10:00〜21:00【要確認】</dd></div>
+            <div><dt>駐車場</dt><dd>フジグラン駐車場（無料）</dd></div>
+          </dl>
+          <a class="stel" href="tel:084-963-7727">084-963-7727</a>
+          <div class="sbtn"><a class="g" href="tel:084-963-7727">電話する</a><a href="#">地図を見る</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map rv"><div class="ph"><span><small>要設定 02</small>Googleマップ埋め込み（3店舗をピン表示）<br>※ビジネスプロフィール「時計修理相談室」確定後に連携</span></div></div>
+    <p class="snote">※ 店名・営業時間・受付可否・掲載する電話番号は未確定です。原稿ワークブック「13_要確認リスト」で確定後に差し替えます。修理のお受付ができる店舗、および広告・LPで案内する店舗の範囲も、あわせて確認が必要です。</p>
+  </div>
+</section>
+<!-- /Section: store -->
+
+<!-- ============================== -->
+<!-- Section: footer -->
+<!-- ============================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="brand"><img src="images/logo.png" alt="ジュエリー＆ウォッチ ミムラ" style="width:150px;filter:invert(1) brightness(1.6);margin-bottom:14px">三村時計店 時計修理相談室</div>
+        <div class="addr">ゆめタウン福山店 084-971-0055 ／ 天満屋福山店 084-927-2171<br>フジグラン神辺店 084-963-7727　※掲載範囲は要確認</div>
+      </div>
+      <div class="links"><a href="contact.html">お問い合わせ</a><a href="#">プライバシーポリシー</a><a href="#">ミムラ公式サイト</a></div>
+    </div>
+    <div class="copy">© 2026 MIMURA WATCH & JEWELRY. All rights reserved.</div>
+  </div>
+</footer>
+<!-- /Section: footer -->
+
+<!-- 固定CTA（SP） -->
+<div class="fixbar">
+  <a class="f-tel" href="tel:000-000-0000" data-cta="fixbar-tel">電話する</a>
+  <a href="contact.html" data-cta="fixbar-form">お問い合わせ</a>
+  <a href="#store" data-link="fixbar-store">店舗案内</a>
+</div>
+
+<script>
+// ヘッダー：FVを抜けたら文字色を紺に
+const hd=document.getElementById('hd');
+const onScroll=()=>hd.classList.toggle('scrolled',window.scrollY>24);
+onScroll();addEventListener('scroll',onScroll,{passive:true});
+// スクロール表示
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// 画像リビール（1要素につき1回だけ）
+const ioImg=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),Number(e.target.dataset.delay||0));ioImg.unobserve(e.target)}
+}),{threshold:.2,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.ph').forEach((el,i)=>{if(!el.dataset.delay)el.dataset.delay=(i%3)*90;ioImg.observe(el)});
+// FAQアコーディオン（高さのみをWeb Animations APIで補間）
+document.querySelectorAll('.fitem').forEach(item=>{
+  const btn=item.querySelector('.fq'), box=item.querySelector('.fa');
+  const DUR=380, EAS='cubic-bezier(.33,0,.2,1)';
+  let anim=null;
+  btn.addEventListener('click',()=>{
+    const opening=!item.classList.contains('open');
+    const from=box.getBoundingClientRect().height;
+    if(anim){ anim.cancel(); anim=null; }
+    item.classList.toggle('open',opening);
+    btn.setAttribute('aria-expanded',String(opening));
+    const to=opening?box.scrollHeight:0;
+    box.style.overflow='hidden';
+    box.style.willChange='height';
+    anim=box.animate(
+      [{height:from+'px',opacity:opening?0:1},{height:to+'px',opacity:opening?1:0}],
+      {duration:DUR,easing:EAS}
+    );
+    anim.onfinish=()=>{ anim=null; box.style.overflow=''; box.style.willChange=''; };
+  });
+});
+// ドロワー内リンクで閉じる
+document.querySelectorAll('.drawer a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('navToggle').checked=false}));
+</script>
+</body>
+</html>
